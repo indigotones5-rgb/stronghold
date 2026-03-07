@@ -5,6 +5,185 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Next Steps | Stronghold Discovery</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .summary-hero {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+      padding: 4rem 0;
+      text-align: center;
+      color: white;
+    }
+    
+    .summary-hero h1 {
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    
+    .summary-hero p {
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .big-number-row {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .big-number {
+      text-align: center;
+    }
+    
+    .big-number .value {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+    
+    .big-number .label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .priorities-section {
+      padding: 4rem 0;
+      background: var(--white);
+    }
+    
+    .priority-card {
+      display: flex;
+      gap: 1.5rem;
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .priority-number {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .priority-content h3 {
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    
+    .priority-content p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .priority-impact {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .bottom-line-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border: 2px solid var(--primary-blue);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+    }
+    
+    .bottom-line-card h3 {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .bottom-line-card p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .data-sources {
+      padding: 3rem 0;
+      background: var(--light-gray);
+    }
+    
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    
+    @media (max-width: 900px) {
+      .source-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .source-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .source-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .source-card .source-number {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      line-height: 1;
+    }
+    
+    .source-card .source-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+    }
+    
+    .credit-bar {
+      background: var(--primary-blue);
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .credit-bar p {
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+    }
+    
+    .credit-bar .company {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      margin-bottom: 0.25rem;
+    }
+  </style>
 </head>
 <body>
   
@@ -29,78 +208,96 @@
 
   <div class="page-content">
     
-    <section class="hero" style="padding: 4rem 0 3rem;">
+    <section class="summary-hero">
       <div class="container">
         <h1>Next Steps</h1>
-        <p class="hero-subtitle">
-          The analysis is complete. The roadmap is clear. The question now is execution.
-        </p>
+        <p>The analysis is complete. The roadmap is clear. Here's what we know and what to do first.</p>
+        
+        <div class="big-number-row">
+          <div class="big-number">
+            <div class="value">85.6</div>
+            <div class="label">NPS Score</div>
+          </div>
+          <div class="big-number">
+            <div class="value">$500K+</div>
+            <div class="label">Recovery Opportunity</div>
+          </div>
+          <div class="big-number">
+            <div class="value">89%</div>
+            <div class="label">Would Recommend</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="priorities-section">
       <div class="container">
         
-        <h2 class="text-center">The Bottom Line</h2>
+        <h2 class="text-center">Immediate Priorities</h2>
+        <p class="text-center text-muted" style="max-width: 600px; margin: 0 auto 2rem;">
+          If nothing else, these three actions will recover significant revenue immediately.
+        </p>
         
-        <div style="max-width: 800px; margin: 0 auto;">
-          <div class="highlight-box">
-            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Stronghold has an exceptional mission, world-class supporter loyalty, and genuinely newsworthy content. These are things that cannot be manufactured.</p>
-            <p style="font-size: 1.1rem; margin-bottom: 0;">What can be built is the infrastructure to match. The website, the conversion paths, the attribution systems, the retention workflows. The roadmap we have presented addresses each gap systematically.</p>
+        <div class="priority-card">
+          <div class="priority-number">1</div>
+          <div class="priority-content">
+            <h3>Activate Card Updater</h3>
+            <p>Turn on FundraiseUp's Card Account Updater to automatically recover failed payments when cards are replaced. This is a switch flip, not a project.</p>
+            <span class="priority-impact">$100K+ Annual Recovery</span>
           </div>
-          
-          <div class="card mt-4">
-            <h3 style="color: var(--primary-blue);">Phase 1 Priorities</h3>
-            <p>If nothing else, these three actions will recover significant revenue immediately:</p>
-            <ol style="margin-left: 1.5rem; color: var(--text-dark);">
-              <li style="margin-bottom: 0.75rem;"><strong>Activate Card Updater</strong> - Recover failed payments ($100K+ annually)</li>
-              <li style="margin-bottom: 0.75rem;"><strong>Build Cancellation Triage</strong> - Flag high-value lapsers for personal outreach</li>
-              <li style="margin-bottom: 0.75rem;"><strong>Implement Milestone Recognition</strong> - Reduce churn at critical thresholds</li>
-            </ol>
+        </div>
+        
+        <div class="priority-card">
+          <div class="priority-number">2</div>
+          <div class="priority-content">
+            <h3>Build Cancellation Triage</h3>
+            <p>Cross-reference cancellation signals with donor value. When a high-value supporter cancels, flag them for personal outreach from leadership before they're gone.</p>
+            <span class="priority-impact">High-Value Retention</span>
           </div>
+        </div>
+        
+        <div class="priority-card">
+          <div class="priority-number">3</div>
+          <div class="priority-content">
+            <h3>Implement Milestone Recognition</h3>
+            <p>Supporters who make it past 10 months are much more likely to stay. Send recognition at key thresholds: 1-year postcard, 2-year thank you, special status.</p>
+            <span class="priority-impact">Churn Prevention</span>
+          </div>
+        </div>
+        
+        <div class="bottom-line-card">
+          <h3>The Bottom Line</h3>
+          <p>Stronghold has an exceptional mission, world-class supporter loyalty, and genuinely newsworthy content. These are things that cannot be manufactured.</p>
+          <p style="margin-bottom: 0;">What can be built is the infrastructure to match. The website, the conversion paths, the attribution systems, the retention workflows. The roadmap addresses each gap systematically, phase by phase.</p>
         </div>
 
       </div>
     </section>
 
-    <section class="section">
+    <section class="data-sources">
       <div class="container">
         
-        <h2 class="text-center">Appendix: Data Sources</h2>
-        <p class="text-center text-muted" style="margin-bottom: 2rem;">All findings in this presentation are derived from the following verified data sources.</p>
+        <h2 class="text-center">Data Sources</h2>
+        <p class="text-center text-muted" style="margin-bottom: 2rem;">
+          All findings derived from verified primary data.
+        </p>
         
-        <div class="grid-2">
-          <div class="card">
-            <h4 style="color: var(--primary-blue);">Donation Data</h4>
-            <ul style="margin-left: 1.5rem; color: var(--text-dark);">
-              <li>Donorbox: 276,836 records (Oct 2019 - Jan 2026)</li>
-              <li>FundraiseUp: 165,818 records (Jan 2025 - Dec 2025)</li>
-              <li>Total: 441,000+ donation records analyzed</li>
-            </ul>
+        <div class="source-grid">
+          <div class="source-card">
+            <div class="source-number">441K+</div>
+            <div class="source-label">Donation Records</div>
           </div>
-          <div class="card">
-            <h4 style="color: var(--primary-blue);">Survey Data</h4>
-            <ul style="margin-left: 1.5rem; color: var(--text-dark);">
-              <li>341 supporter responses</li>
-              <li>Collected February 2026</li>
-              <li>91.8% US-based respondents</li>
-            </ul>
+          <div class="source-card">
+            <div class="source-number">341</div>
+            <div class="source-label">Survey Responses</div>
           </div>
-          <div class="card">
-            <h4 style="color: var(--primary-blue);">Analytics Data</h4>
-            <ul style="margin-left: 1.5rem; color: var(--text-dark);">
-              <li>Google Analytics 4 (12 months)</li>
-              <li>Ahrefs SEO data</li>
-              <li>Social media platform insights (90 days)</li>
-            </ul>
+          <div class="source-card">
+            <div class="source-number">12</div>
+            <div class="source-label">Months of Analytics</div>
           </div>
-          <div class="card">
-            <h4 style="color: var(--primary-blue);">Qualitative Research</h4>
-            <ul style="margin-left: 1.5rem; color: var(--text-dark);">
-              <li>8 supporter and stakeholder interviews</li>
-              <li>Comment sentiment analysis</li>
-              <li>External donor behavior research</li>
-            </ul>
+          <div class="source-card">
+            <div class="source-number">8</div>
+            <div class="source-label">Stakeholder Interviews</div>
           </div>
         </div>
         
@@ -110,6 +307,11 @@
 
       </div>
     </section>
+    
+    <div class="credit-bar">
+      <p class="company">Indigo Tones LLC</p>
+      <p>Discovery Engagement | February 2026</p>
+    </div>
 
   </div>
 
