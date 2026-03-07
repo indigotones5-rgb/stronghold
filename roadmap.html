@@ -5,6 +5,227 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Roadmap | Stronghold Discovery</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Roadmap-specific styles */
+    .roadmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .phase-nav {
+      flex: 1;
+      min-width: 200px;
+      background: var(--white);
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    
+    .phase-nav:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+    
+    .phase-nav.active {
+      border-color: var(--primary-blue);
+      background: var(--primary-blue);
+      color: white;
+    }
+    
+    .phase-nav .phase-num {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 auto 0.75rem;
+    }
+    
+    .phase-nav.active .phase-num {
+      background: var(--accent-gold);
+      color: var(--primary-blue);
+    }
+    
+    .phase-nav .phase-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .phase-nav .phase-time {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .phase-nav.active .phase-time {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    /* Connector line between phases */
+    .phase-nav:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -0.75rem;
+      top: 50%;
+      width: 1rem;
+      height: 2px;
+      background: #d1d5db;
+    }
+    
+    @media (max-width: 900px) {
+      .phase-nav:not(:last-child)::after {
+        display: none;
+      }
+    }
+    
+    /* Phase content */
+    .phase-section {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .phase-number {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+    }
+    
+    .phase-info h2 {
+      margin-bottom: 0.25rem;
+      font-size: 1.75rem;
+    }
+    
+    .phase-info .phase-subtitle {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    
+    .phase-why {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary-blue);
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .phase-why p {
+      margin: 0;
+      color: var(--text-dark);
+    }
+    
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    
+    .action-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+    
+    .action-card h4 {
+      color: var(--primary-blue);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .action-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+    }
+    
+    .action-card .action-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Channel matrix redesign */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .matrix-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .matrix-header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+    }
+    
+    .matrix-header.wins {
+      background: var(--success);
+    }
+    
+    .matrix-body {
+      padding: 1rem;
+    }
+    
+    .matrix-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .matrix-item:last-child {
+      border-bottom: none;
+    }
+  </style>
 </head>
 <body>
   
@@ -41,144 +262,240 @@
     <section class="section">
       <div class="container">
         
-        <div class="timeline">
+        <!-- Phase Navigation -->
+        <div class="roadmap-header">
+          <div class="phase-nav">
+            <div class="phase-num">1</div>
+            <div class="phase-title">Stop the Bleeding</div>
+            <div class="phase-time">Weeks 1-4</div>
+          </div>
+          <div class="phase-nav">
+            <div class="phase-num">2</div>
+            <div class="phase-title">Website Rebuild</div>
+            <div class="phase-time">Weeks 4-12</div>
+          </div>
+          <div class="phase-nav">
+            <div class="phase-num">3</div>
+            <div class="phase-title">Growth Channels</div>
+            <div class="phase-time">Months 3-6</div>
+          </div>
+          <div class="phase-nav">
+            <div class="phase-num">4</div>
+            <div class="phase-title">Scale</div>
+            <div class="phase-time">Months 6-12</div>
+          </div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div class="phase-section">
+          <div class="phase-header">
+            <div class="phase-number">1</div>
+            <div class="phase-info">
+              <h2>Stop the Bleeding</h2>
+              <div class="phase-subtitle">Immediate Priority | Revenue Recovery Focus</div>
+            </div>
+          </div>
           
-          <div class="timeline-item">
-            <h3>Phase 1: Stop the Bleeding</h3>
-            <p class="text-muted mb-2">Immediate Priority | Revenue Recovery Focus</p>
-            <p>Before building anything new, we stop the active losses. These are quick wins that recover revenue from your existing supporter base.</p>
-            
-            <div class="grid-2 mt-4">
-              <div class="card">
-                <h4 class="text-gold">Failed Payment Recovery</h4>
-                <p>Activate FundraiseUp's Card Account Updater ($0.25/card). This automatically updates saved payment methods when cards are replaced.</p>
-                <p class="mb-0"><span class="badge badge-success">$100K+ Annual Recovery</span></p>
+          <div class="phase-why">
+            <p><strong>Why this first:</strong> Before building anything new, we stop the active losses. These are quick wins that recover revenue from your existing supporter base with minimal effort.</p>
+          </div>
+          
+          <div class="action-grid">
+            <div class="action-card">
+              <h4>Failed Payment Recovery</h4>
+              <p>Activate FundraiseUp's Card Account Updater ($0.25/card). Automatically updates saved payment methods when cards are replaced.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">$100K+ Annual Recovery</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Cancellation Triage</h4>
-                <p>Build a system that cross-references cancellation signals with donor value. High-value supporters who cancel trigger personal outreach from leadership.</p>
-                <p class="mb-0"><span class="badge badge-warning">Retention Priority</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Cancellation Triage</h4>
+              <p>Cross-reference cancellation signals with donor value. High-value supporters who cancel trigger personal outreach from leadership.</p>
+              <div class="action-meta">
+                <span class="badge badge-warning">Retention Priority</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Re-engagement Flows</h4>
-                <p>For supporters who cancel: "Sorry to see you go" email sequence offering lower tiers or pause options instead of full cancellation.</p>
-                <p class="mb-0"><span class="badge badge-warning">Churn Prevention</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Re-engagement Flows</h4>
+              <p>"Sorry to see you go" email sequence offering lower tiers or pause options instead of full cancellation.</p>
+              <div class="action-meta">
+                <span class="badge badge-warning">Churn Prevention</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Milestone Recognition</h4>
-                <p>Send recognition at key thresholds: 1-year anniversary postcard, 2-year thank you, special status for long-term supporters. Supporters who reach 10+ months are much more likely to stay.</p>
-                <p class="mb-0"><span class="badge badge-success">Loyalty Building</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Milestone Recognition</h4>
+              <p>Recognition at key thresholds: 1-year postcard, 2-year thank you. Supporters past 10 months are much more likely to stay.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Loyalty Building</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="timeline-item">
-            <h3>Phase 2: Website Rebuild</h3>
-            <p class="text-muted mb-2">Foundation Work | Platform Migration</p>
-            <p>Move off Squarespace to a proper CMS. Nothing else scales until this is done. The website is the foundation for everything that follows.</p>
-            
-            <div class="grid-2 mt-4">
-              <div class="card">
-                <h4 class="text-gold">Platform Migration</h4>
-                <p>Move to a CMS that supports proper analytics, content management, and conversion optimization. Squarespace is a ceiling on growth.</p>
-                <p class="mb-0"><span class="badge badge-danger">Critical Foundation</span></p>
+        <!-- Phase 2 -->
+        <div class="phase-section">
+          <div class="phase-header">
+            <div class="phase-number">2</div>
+            <div class="phase-info">
+              <h2>Website Rebuild</h2>
+              <div class="phase-subtitle">Foundation Work | Platform Migration</div>
+            </div>
+          </div>
+          
+          <div class="phase-why">
+            <p><strong>Why this second:</strong> Move off Squarespace to a proper CMS. Nothing else scales until this is done. The website is the foundation for everything that follows.</p>
+          </div>
+          
+          <div class="action-grid">
+            <div class="action-card">
+              <h4>Platform Migration</h4>
+              <p>Move to a CMS that supports proper analytics, content management, and conversion optimization. Squarespace is a ceiling on growth.</p>
+              <div class="action-meta">
+                <span class="badge badge-danger">Critical</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Conversion Infrastructure</h4>
-                <p>Fix GA4 event mapping. Implement UTM tracking on all links. FundraiseUp captures UTMs natively. Enable proper attribution.</p>
-                <p class="mb-0"><span class="badge badge-danger">Measurement Fix</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Conversion Infrastructure</h4>
+              <p>Fix GA4 event mapping. Implement UTM tracking on all links. FundraiseUp captures UTMs natively. Enable proper attribution.</p>
+              <div class="action-meta">
+                <span class="badge badge-danger">Measurement Fix</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Stories Hub</h4>
-                <p>Consolidate thin /updates/ posts into evergreen regional authority pages. Burma, Afghanistan, Venezuela. Structure for SEO and engagement.</p>
-                <p class="mb-0"><span class="badge badge-success">Content Architecture</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Stories Hub</h4>
+              <p>Consolidate thin /updates/ posts into evergreen regional authority pages. Structure content for SEO and engagement.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Content Architecture</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">YouTube Landing Page</h4>
-                <p>Build a dedicated page for video-referred visitors: "You just watched this. Here's how to help." Unlock the 34,000 monthly YouTube visitors.</p>
-                <p class="mb-0"><span class="badge badge-success">Conversion Path</span></p>
+            </div>
+            <div class="action-card">
+              <h4>YouTube Landing Page</h4>
+              <p>"You just watched this. Here's how to help." Dedicated page for video-referred visitors. Unlock 34,000 monthly YouTube visitors.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Conversion Path</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Impact Transparency</h4>
-                <p>Show exactly how funds are used. Add "what your donation does" impact equivalencies. "$50/month = 3 med packs in the field."</p>
-                <p class="mb-0"><span class="badge badge-success">Trust Building</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Impact Transparency</h4>
+              <p>Show exactly how funds are used. Add impact equivalencies: "$50/month = 3 med packs in the field."</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Trust Building</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Social Proof</h4>
-                <p>Add community language: "Join 10,300 people supporting rescue operations." Donors need to feel they are joining a movement.</p>
-                <p class="mb-0"><span class="badge badge-success">Conversion Lift</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Social Proof</h4>
+              <p>"Join 10,300 people supporting rescue operations." Donors need to feel they are joining a movement.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Conversion Lift</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="timeline-item">
-            <h3>Phase 3: Growth Channels</h3>
-            <p class="text-muted mb-2">Acquisition Engine | Paid + Organic</p>
-            <p>With the foundation fixed, activate the channels that will drive new donor acquisition. Free channels first, then paid amplification.</p>
-            
-            <div class="grid-2 mt-4">
-              <div class="card">
-                <h4 class="text-gold">Google Ad Grants</h4>
-                <p>$10,000/month in free search ads for nonprofits. Requires conversion tracking to be fixed first. Captures high-intent searches.</p>
-                <p class="mb-0"><span class="badge badge-success">$120K/Year Free Media</span></p>
+        <!-- Phase 3 -->
+        <div class="phase-section">
+          <div class="phase-header">
+            <div class="phase-number">3</div>
+            <div class="phase-info">
+              <h2>Growth Channels</h2>
+              <div class="phase-subtitle">Acquisition Engine | Paid + Organic</div>
+            </div>
+          </div>
+          
+          <div class="phase-why">
+            <p><strong>Why this third:</strong> With the foundation fixed, activate the channels that will drive new donor acquisition. Free channels first, then paid amplification.</p>
+          </div>
+          
+          <div class="action-grid">
+            <div class="action-card">
+              <h4>Google Ad Grants</h4>
+              <p>$10,000/month in free search ads for nonprofits. Requires conversion tracking to be fixed first. Captures high-intent searches.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">$120K/Year Free Media</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Email Strategy</h4>
-                <p>Email is the #1 retention channel. Most current donors are NOT on social media. They came through podcasts. Build quality sequences.</p>
-                <p class="mb-0"><span class="badge badge-warning">Retention Focus</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Email Strategy</h4>
+              <p>Email is the #1 retention channel. Most current donors came through podcasts, not social media. Build quality sequences.</p>
+              <div class="action-meta">
+                <span class="badge badge-warning">Retention Focus</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Social Media Paid</h4>
-                <p>Boost field dispatches within 24 hours of posting. $50-100 targeting US adults 25-65 interested in humanitarian aid and veterans.</p>
-                <p class="mb-0"><span class="badge badge-success">Amplification</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Social Media Paid</h4>
+              <p>Boost field dispatches within 24 hours of posting. $50-100 targeting US adults 25-65 interested in humanitarian aid and veterans.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Amplification</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">SEO Content</h4>
-                <p>Build intent-mapped pages targeting non-branded searches: "veteran charity," "Burma relief," "humanitarian evacuation."</p>
-                <p class="mb-0"><span class="badge badge-warning">Long-Term Growth</span></p>
+            </div>
+            <div class="action-card">
+              <h4>SEO Content</h4>
+              <p>Build intent-mapped pages targeting non-branded searches: "veteran charity," "Burma relief," "humanitarian evacuation."</p>
+              <div class="action-meta">
+                <span class="badge badge-warning">Long-Term Growth</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Referral Program</h4>
-                <p>89% of supporters would recommend Stronghold. Give them a structured way to refer. "Cover Your 6" postcard packs.</p>
-                <p class="mb-0"><span class="badge badge-success">Word of Mouth</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Referral Program</h4>
+              <p>89% of supporters would recommend Stronghold. Give them a structured way to refer. "Cover Your 6" postcard packs.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Word of Mouth</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Monthly State of the Union</h4>
-                <p>Scripted monthly video update on what's happening. Feed through YouTube. Maintain engagement and provide shareable content.</p>
-                <p class="mb-0"><span class="badge badge-success">Engagement</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Monthly State of the Union</h4>
+              <p>Scripted monthly video update on what's happening. Feed through YouTube. Maintain engagement and provide shareable content.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Engagement</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="timeline-item">
-            <h3>Phase 4: Scale</h3>
-            <p class="text-muted mb-2">Paid Acquisition | Data-Driven Optimization</p>
-            <p>With audience intelligence from Phase 3, invest in paid search when you know who converts. Expand podcast partnerships. Build ambassador program.</p>
-            
-            <div class="grid-2 mt-4">
-              <div class="card">
-                <h4 class="text-gold">Google PPC</h4>
-                <p>Layer in paid search spend in Q4 when you have the audience intelligence to target efficiently. Year-end giving season.</p>
-                <p class="mb-0"><span class="badge badge-warning">Strategic Investment</span></p>
+        <!-- Phase 4 -->
+        <div class="phase-section">
+          <div class="phase-header">
+            <div class="phase-number">4</div>
+            <div class="phase-info">
+              <h2>Scale</h2>
+              <div class="phase-subtitle">Paid Acquisition | Data-Driven Optimization</div>
+            </div>
+          </div>
+          
+          <div class="phase-why">
+            <p><strong>Why this last:</strong> With audience intelligence from Phase 3, invest in paid search when you know who converts. Expand partnerships. Build the ambassador program.</p>
+          </div>
+          
+          <div class="action-grid">
+            <div class="action-card">
+              <h4>Google PPC</h4>
+              <p>Layer in paid search spend in Q4 when you have the audience intelligence to target efficiently. Year-end giving season.</p>
+              <div class="action-meta">
+                <span class="badge badge-warning">Strategic Investment</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Podcast Partnerships</h4>
-                <p>47% of donors came from MrBallen. This is a single point of failure. Model new partnerships on that playbook.</p>
-                <p class="mb-0"><span class="badge badge-danger">Diversification</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Podcast Partnerships</h4>
+              <p>47% of donors came from MrBallen. This is a single point of failure. Model new partnerships on that playbook.</p>
+              <div class="action-meta">
+                <span class="badge badge-danger">Diversification</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Ambassador Program</h4>
-                <p>73 "super fans" have made 49+ donations each. Give them a formal role. Brand ambassadors, event hosts, referral champions.</p>
-                <p class="mb-0"><span class="badge badge-success">Community Building</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Ambassador Program</h4>
+              <p>73 "super fans" have made 49+ donations each. Give them a formal role. Brand ambassadors, event hosts, referral champions.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Community Building</span>
               </div>
-              <div class="card">
-                <h4 class="text-gold">Major Donor Cultivation</h4>
-                <p>One-time donors give 11x more per transaction. Build a separate funnel for major gift prospects. Personal cultivation.</p>
-                <p class="mb-0"><span class="badge badge-success">Revenue Diversification</span></p>
+            </div>
+            <div class="action-card">
+              <h4>Major Donor Cultivation</h4>
+              <p>One-time donors give 11x more per transaction. Build a separate funnel for major gift prospects. Personal cultivation.</p>
+              <div class="action-meta">
+                <span class="badge badge-success">Revenue Diversification</span>
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -189,53 +506,51 @@
         
         <h2 class="text-center">Channel Priority Matrix</h2>
         <p class="text-center text-muted" style="max-width: 700px; margin: 0 auto 2rem;">
-          Where to invest limited resources for maximum impact. Quick wins first, strategic bets second.
+          Where to invest limited resources for maximum impact.
         </p>
         
-        <div class="grid-2">
-          <div class="card">
-            <h3 class="text-gold">Quick Wins</h3>
-            <p class="text-muted">Low effort, high impact. Do these immediately.</p>
-            <table class="data-table">
-              <tr>
-                <td>Referral Program</td>
-                <td style="text-align: right;"><span class="badge badge-success">High Impact</span></td>
-              </tr>
-              <tr>
-                <td>Email / Newsletter</td>
-                <td style="text-align: right;"><span class="badge badge-success">High Impact</span></td>
-              </tr>
-              <tr>
-                <td>Facebook Cross-Post</td>
-                <td style="text-align: right;"><span class="badge badge-success">High Impact</span></td>
-              </tr>
-              <tr>
-                <td>Instagram Optimization</td>
-                <td style="text-align: right;"><span class="badge badge-success">High Impact</span></td>
-              </tr>
-            </table>
+        <div class="matrix-grid">
+          <div class="matrix-card">
+            <div class="matrix-header wins">Quick Wins</div>
+            <div class="matrix-body">
+              <div class="matrix-item">
+                <span>Referral Program</span>
+                <span class="badge badge-success">High Impact</span>
+              </div>
+              <div class="matrix-item">
+                <span>Email / Newsletter</span>
+                <span class="badge badge-success">High Impact</span>
+              </div>
+              <div class="matrix-item">
+                <span>Facebook Cross-Post</span>
+                <span class="badge badge-success">High Impact</span>
+              </div>
+              <div class="matrix-item">
+                <span>Instagram Optimization</span>
+                <span class="badge badge-success">High Impact</span>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <h3 class="text-gold">Strategic Bets</h3>
-            <p class="text-muted">Higher effort, essential for growth. Phase 2-3 priorities.</p>
-            <table class="data-table">
-              <tr>
-                <td>Website Rebuild</td>
-                <td style="text-align: right;"><span class="badge badge-danger">Critical</span></td>
-              </tr>
-              <tr>
-                <td>YouTube Conversion Path</td>
-                <td style="text-align: right;"><span class="badge badge-warning">High Value</span></td>
-              </tr>
-              <tr>
-                <td>Podcast Guest Appearances</td>
-                <td style="text-align: right;"><span class="badge badge-success">Proven</span></td>
-              </tr>
-              <tr>
-                <td>SEO / Blog Content</td>
-                <td style="text-align: right;"><span class="badge badge-warning">Long-Term</span></td>
-              </tr>
-            </table>
+          <div class="matrix-card">
+            <div class="matrix-header">Strategic Bets</div>
+            <div class="matrix-body">
+              <div class="matrix-item">
+                <span>Website Rebuild</span>
+                <span class="badge badge-danger">Critical</span>
+              </div>
+              <div class="matrix-item">
+                <span>YouTube Conversion Path</span>
+                <span class="badge badge-warning">High Value</span>
+              </div>
+              <div class="matrix-item">
+                <span>Podcast Guest Appearances</span>
+                <span class="badge badge-success">Proven</span>
+              </div>
+              <div class="matrix-item">
+                <span>SEO / Blog Content</span>
+                <span class="badge badge-warning">Long-Term</span>
+              </div>
+            </div>
           </div>
         </div>
         
