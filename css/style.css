@@ -17,10 +17,10 @@
   --text-dark: #0f172a;
   --text-muted: #9ca3af;
   
-  /* Status colors */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  /* Status colors - brand-aligned */
+  --success: #3b7a8c;    /* teal, complements navy */
+  --warning: #c9922e;    /* muted amber, pairs with gold */
+  --danger: #a65d57;     /* muted rust, not jarring */
 }
 
 /* Reset */

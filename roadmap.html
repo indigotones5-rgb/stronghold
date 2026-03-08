@@ -107,24 +107,25 @@
       }
     }
     
-    /* Slider container */
+    /* Slider container - clip at section level */
+    .section.slider-section {
+      overflow: hidden;
+    }
+    
     .slider-wrapper {
-      overflow-x: hidden;
-      overflow-y: visible;
       position: relative;
+      width: 100%;
     }
     
     .slider-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      align-items: flex-start;
     }
     
     .slider-slide {
+      width: 100%;
       min-width: 100%;
       flex-shrink: 0;
-      padding: 0 2px;
-      box-sizing: border-box;
     }
     
     /* Phase content */
@@ -287,7 +288,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section slider-section">
       <div class="container">
         
         <!-- Phase Navigation -->
