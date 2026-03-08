@@ -602,10 +602,6 @@
               <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--warning);"></div>
               <span style="font-size: 0.85rem; color: var(--gray);">Fill Later</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--danger);"></div>
-              <span style="font-size: 0.85rem; color: var(--gray);">Deprioritize</span>
-            </div>
           </div>
         </div>
         
@@ -683,23 +679,22 @@
         type: 'bubble',
         data: {
           datasets: [
-            // Quick Wins (green)
-            { label: 'Referral Program', data: [{ x: 3.5, y: 9.0, r: 18 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
-            { label: 'Email/Newsletter', data: [{ x: 3.5, y: 8.0, r: 22 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
-            { label: 'Instagram', data: [{ x: 5.0, y: 8.5, r: 18 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
-            { label: 'Facebook', data: [{ x: 4.5, y: 8.3, r: 14 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
-            // Strategic Bets (navy)
-            { label: 'Website Rebuild', data: [{ x: 8.2, y: 8.8, r: 28 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
-            { label: 'Podcasts (Guest)', data: [{ x: 5.6, y: 9.5, r: 26 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
-            { label: 'YouTube', data: [{ x: 7.0, y: 8.8, r: 22 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
-            { label: 'SEO/Blogs', data: [{ x: 7.0, y: 7.5, r: 16 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
-            { label: 'Merch Store', data: [{ x: 5.8, y: 7.5, r: 18 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
-            // Fill Later (gold)
-            { label: 'Google Ad Grant', data: [{ x: 4.5, y: 6.5, r: 20 }], backgroundColor: 'rgba(201, 146, 46, 0.8)', borderColor: '#c9922e', borderWidth: 2 },
-            { label: 'LinkedIn', data: [{ x: 2.5, y: 4.0, r: 12 }], backgroundColor: 'rgba(201, 146, 46, 0.8)', borderColor: '#c9922e', borderWidth: 2 },
-            // Deprioritize (red)
-            { label: 'TikTok', data: [{ x: 7.5, y: 4.0, r: 12 }], backgroundColor: 'rgba(196, 82, 74, 0.8)', borderColor: '#c4524a', borderWidth: 2 },
-            { label: 'X/Twitter', data: [{ x: 6.5, y: 5.5, r: 10 }], backgroundColor: 'rgba(196, 82, 74, 0.8)', borderColor: '#c4524a', borderWidth: 2 }
+            // Quick Wins (green) - low effort, high impact
+            { label: 'Referral Program', data: [{ x: 3.5, y: 9.0, r: 14 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
+            { label: 'Email / Newsletter', data: [{ x: 3.5, y: 8.0, r: 18 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
+            { label: 'Facebook', data: [{ x: 4.5, y: 8.3, r: 12 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
+            { label: 'Instagram', data: [{ x: 5.0, y: 8.5, r: 16 }], backgroundColor: 'rgba(58, 140, 110, 0.8)', borderColor: '#3a8c6e', borderWidth: 2 },
+            // Strategic Bets (navy) - high effort, high impact
+            { label: 'Podcasts (Guest)', data: [{ x: 5.1, y: 9.5, r: 22 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            { label: 'YouTube', data: [{ x: 7.0, y: 8.8, r: 18 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            { label: 'Blogs / SEO', data: [{ x: 7.0, y: 8.0, r: 13 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            { label: 'Podcasts (Create)', data: [{ x: 8.0, y: 8.2, r: 19 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            { label: 'Website', data: [{ x: 8.2, y: 8.8, r: 24 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            { label: 'Merch Store', data: [{ x: 5.7, y: 7.5, r: 16 }], backgroundColor: 'rgba(13, 42, 69, 0.8)', borderColor: '#0d2a45', borderWidth: 2 },
+            // Fill Later (gold) - varies
+            { label: 'Google Ad Grant', data: [{ x: 6.0, y: 6.8, r: 17 }], backgroundColor: 'rgba(201, 146, 46, 0.8)', borderColor: '#c9922e', borderWidth: 2 },
+            { label: 'X / Twitter', data: [{ x: 6.8, y: 6.6, r: 12 }], backgroundColor: 'rgba(201, 146, 46, 0.8)', borderColor: '#c9922e', borderWidth: 2 },
+            { label: 'LinkedIn', data: [{ x: 2.5, y: 2.0, r: 10 }], backgroundColor: 'rgba(201, 146, 46, 0.8)', borderColor: '#c9922e', borderWidth: 2 }
           ]
         },
         options: {
