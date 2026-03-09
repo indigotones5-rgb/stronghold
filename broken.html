@@ -85,10 +85,42 @@
           <p class="mb-0">Retention is an engagement and relationship problem, not an affordability problem. Donors giving $15/month churn at roughly the same rate as donors giving $40/month. <strong>Industry benchmark:</strong> Average nonprofit donor retention is 40-45%. Communication quality matters more than donation amount.</p>
         </div>
 
+        <h3 style="margin-top: 3rem; color: var(--primary-blue);">Churn is Outpacing New Supporters</h3>
+        <p>Monthly new supporter acquisition cannot keep pace with losses. The gap is widening.</p>
+        <div class="chart-wrapper">
+          <canvas id="newVsChurnChart"></canvas>
+        </div>
+
       </div>
     </section>
 
     <section class="section section-alt">
+      <div class="container">
+        
+        <h2>Economic Headwinds</h2>
+        <p>The broader economic environment is creating additional pressure on donor retention.</p>
+        
+        <div class="grid-2" style="gap: 2rem;">
+          <div class="card" style="border-left: 4px solid var(--danger);">
+            <h3 style="color: var(--danger);">Personal Savings Down</h3>
+            <div style="font-size: 2rem; font-weight: 700; color: var(--danger); margin: 1rem 0;">-45%</div>
+            <p class="mb-0">US personal savings rate has dropped from 33% (2020) to 3.8% (2024). Discretionary giving faces real household pressure.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--warning);">
+            <h3 style="color: var(--warning);">Credit Card Debt Up</h3>
+            <div style="font-size: 2rem; font-weight: 700; color: var(--warning); margin: 1rem 0;">$1.14T</div>
+            <p class="mb-0">US credit card debt hit a record $1.14 trillion in 2024. High interest rates compound the financial stress affecting donor capacity.</p>
+          </div>
+        </div>
+        
+        <div class="highlight-box mt-4">
+          <p class="mb-0"><strong>Implication:</strong> This makes retention even more critical. Acquiring new donors in a constrained economic environment is harder and more expensive. The supporters you already have are your most valuable asset.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container">
         
         <h2>The $258K Problem: Failed Payments</h2>
@@ -388,6 +420,54 @@
         },
         scales: {
           y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // New vs Churn chart
+    const newVsChurnCtx = document.getElementById('newVsChurnChart').getContext('2d');
+    new Chart(newVsChurnCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jul 24', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan 25', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'New Supporters',
+          data: [84, 120, 154, 249, 175, 111, 149, 130, 141, 81, 54, 72, 84, 120, 154, 249, 175, 111],
+          backgroundColor: 'rgba(58, 140, 110, 0.8)',
+          borderColor: '#3a8c6e',
+          borderWidth: 1
+        }, {
+          label: 'Churned Supporters',
+          data: [225, 189, 206, 206, 219, 234, 289, 246, 224, 221, 232, 225, 189, 206, 206, 219, 234, 240],
+          backgroundColor: 'rgba(196, 82, 74, 0.8)',
+          borderColor: '#c4524a',
+          borderWidth: 1
+        }, {
+          type: 'line',
+          label: 'Net Change',
+          data: [-141, -69, -52, 43, -44, -123, -140, -116, -83, -140, -178, -153, -105, -86, -52, 30, -59, -129],
+          borderColor: '#ffc300',
+          backgroundColor: 'transparent',
+          borderWidth: 3,
+          pointRadius: 4,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { 
+            display: true, 
+            position: 'bottom',
+            labels: { color: '#0d2a45' }
+          },
+          title: { display: true, text: 'New Supporters vs Churned Supporters (Monthly)', color: '#0d2a45' }
+        },
+        scales: {
+          y: { 
+            beginAtZero: true,
+            title: { display: true, text: 'Supporter Count', color: '#6b7280' }
+          }
         }
       }
     });

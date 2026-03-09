@@ -229,7 +229,53 @@
       </div>
     </section>
 
+    <section class="section section-alt">
+      <div class="container">
+        
+        <h2>What Supporters Say</h2>
+        <p>How supporters and the internal team describe Stronghold in their own words.</p>
+        
+        <div class="grid-2" style="gap: 2rem; margin-top: 2rem;">
+          <div class="card" style="text-align: center;">
+            <h3 class="text-gold" style="margin-bottom: 1.5rem;">How Supporters Describe Stronghold</h3>
+            <div id="supporterWordcloud" style="min-height: 280px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; padding: 1rem;"></div>
+          </div>
+          <div class="card" style="text-align: center;">
+            <h3 class="text-gold" style="margin-bottom: 1.5rem;">How the Team Describes Stronghold</h3>
+            <img src="assets/team-wordcloud.png" alt="Team Word Cloud" style="max-width: 100%; height: auto; border-radius: 8px;">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section class="section">
+      <div class="container">
+        
+        <h2>Where Our Supporters Are</h2>
+        <p>Geographic distribution of Stronghold supporters across the United States. Hover over states for details.</p>
+        
+        <div class="card" style="padding: 1.5rem;">
+          <div id="mapContainer" style="position: relative; width: 100%; height: 450px; overflow: hidden;"></div>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 1rem; flex-wrap: wrap;">
+            <span style="font-size: 0.93rem; color: var(--gray);">Fewer</span>
+            <div style="display: flex; gap: 4px;">
+              <div style="width: 24px; height: 14px; background: #dce8f5; border-radius: 2px;"></div>
+              <div style="width: 24px; height: 14px; background: #a8c8e8; border-radius: 2px;"></div>
+              <div style="width: 24px; height: 14px; background: #5e9bbf; border-radius: 2px;"></div>
+              <div style="width: 24px; height: 14px; background: #2e5fa3; border-radius: 2px;"></div>
+              <div style="width: 24px; height: 14px; background: #1a3a6e; border-radius: 2px;"></div>
+              <div style="width: 24px; height: 14px; background: #0d1b3e; border-radius: 2px;"></div>
+            </div>
+            <span style="font-size: 0.93rem; color: var(--gray);">More</span>
+            <span style="margin-left: 20px; color: var(--accent-gold); font-weight: 600; font-size: 0.93rem;">Top 5: TX 257 · CA 256 · FL 157 · WA 99 · NC 76</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-alt">
       <div class="container">
         
         <h2>Donor Motivations</h2>
@@ -277,11 +323,129 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script src="js/auth.js"></script>
   <script>
     if (sessionStorage.getItem('stronghold_auth') === 'true') {
       document.querySelector('.page-content').classList.add('visible');
     }
+
+    // Supporter Word Cloud
+    const words = [
+      { text: 'COURAGEOUS', size: 42, color: '#c4524a' },
+      { text: 'TRUSTWORTHY', size: 38, color: '#0d2a45' },
+      { text: 'MISSION-DRIVEN', size: 35, color: '#ffc300' },
+      { text: 'AUTHENTIC', size: 32, color: '#0d2a45' },
+      { text: 'EFFICIENT', size: 30, color: '#3a8c6e' },
+      { text: 'SELFLESS', size: 28, color: '#c4524a' },
+      { text: 'BOOTS ON GROUND', size: 26, color: '#0d2a45' },
+      { text: 'TRANSPARENT', size: 24, color: '#ffc300' },
+      { text: 'VETERAN-LED', size: 23, color: '#3a8c6e' },
+      { text: 'LEAN', size: 22, color: '#3a8c6e' },
+      { text: 'IMPACTFUL', size: 21, color: '#c4524a' },
+      { text: 'CREDIBLE', size: 20, color: '#0d2a45' },
+      { text: 'HEROIC', size: 19, color: '#ffc300' },
+      { text: 'REAL', size: 18, color: '#3a8c6e' },
+      { text: 'PURPOSEFUL', size: 17, color: '#0d2a45' },
+      { text: 'ELITE', size: 16, color: '#3a8c6e' },
+      { text: 'INSPIRING', size: 15, color: '#c4524a' },
+      { text: 'HUMBLE', size: 14, color: '#ffc300' },
+    ];
+    const wcContainer = document.getElementById('supporterWordcloud');
+    words.forEach(w => {
+      const span = document.createElement('span');
+      span.textContent = w.text;
+      span.style.fontSize = w.size + 'px';
+      span.style.color = w.color;
+      span.style.fontWeight = '700';
+      span.style.fontFamily = 'Barlow Condensed, sans-serif';
+      span.style.opacity = 0.7 + (w.size / 42) * 0.3;
+      wcContainer.appendChild(span);
+    });
+
+    // US Map
+    (function(){
+      const stateData = {
+        AL:41,AK:14,AZ:72,AR:7,CA:256,CO:58,CT:23,DE:8,FL:157,GA:62,
+        HI:18,ID:23,IL:52,IN:39,IA:14,KS:19,KY:20,LA:27,ME:14,MD:32,
+        MA:46,MI:70,MN:40,MS:13,MO:28,MT:10,NE:10,NV:28,NH:11,NJ:34,
+        NM:12,NY:68,NC:76,ND:4,OH:56,OK:24,OR:47,PA:62,RI:3,SC:32,
+        SD:7,TN:55,TX:257,UT:32,VT:2,VA:64,WA:99,WV:10,WI:34,WY:8,DC:2
+      };
+      const stateFull = {
+        AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
+        CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',
+        HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',
+        KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',
+        MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',
+        NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',
+        NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',
+        OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',
+        SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',
+        VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',
+        DC:'Washington D.C.'
+      };
+      const fipsToAbbr = {
+        "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT",
+        "10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL",
+        "18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD",
+        "25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE",
+        "32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND",
+        "39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD",
+        "47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV",
+        "55":"WI","56":"WY"
+      };
+      function getColor(v) {
+        if (!v || v === 0) return '#eef2f7';
+        const t = Math.pow(v / 257, 0.45);
+        if (t < 0.12) return '#dce8f5';
+        if (t < 0.28) return '#a8c8e8';
+        if (t < 0.48) return '#5e9bbf';
+        if (t < 0.68) return '#2e5fa3';
+        if (t < 0.85) return '#1a3a6e';
+        return '#0d1b3e';
+      }
+
+      const container = document.getElementById('mapContainer');
+      const tip = document.createElement('div');
+      tip.style.cssText = 'position:absolute;background:#0d2a45;color:#fff;padding:8px 14px;border-radius:4px;font-size:12px;pointer-events:none;display:none;z-index:99;box-shadow:0 4px 12px rgba(0,0,0,0.25);';
+      container.appendChild(tip);
+
+      const VW = 960, VH = 600;
+      const svg = d3.select('#mapContainer').append('svg')
+        .attr('viewBox', '0 0 ' + VW + ' ' + VH)
+        .attr('preserveAspectRatio', 'xMidYMid meet')
+        .attr('width', '100%').attr('height', '100%')
+        .style('display', 'block');
+      const projection = d3.geoAlbersUsa().scale(1280).translate([VW / 2, VH / 2]);
+      const path = d3.geoPath().projection(projection);
+
+      fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+        .then(r => r.json())
+        .then(us => {
+          const states = topojson.feature(us, us.objects.states);
+          svg.selectAll('path.state').data(states.features).enter().append('path')
+            .attr('class', 'state').attr('d', path)
+            .attr('fill', d => { const f = String(d.id).padStart(2, '0'); return getColor(stateData[fipsToAbbr[f]] || 0); })
+            .attr('stroke', '#ffffff').attr('stroke-width', 1.2).style('cursor', 'pointer')
+            .on('mousemove', function(event, d) {
+              const f = String(d.id).padStart(2, '0');
+              const abbr = fipsToAbbr[f];
+              const count = stateData[abbr] || 0;
+              tip.style.display = 'block';
+              tip.innerHTML = '<strong style="color:#ffc300;">' + (stateFull[abbr] || abbr) + '</strong><br>' + count + ' supporter' + (count !== 1 ? 's' : '');
+              const box = container.getBoundingClientRect();
+              let lx = event.clientX - box.left + 14, ly = event.clientY - box.top - 50;
+              if (lx + 150 > box.width) lx = event.clientX - box.left - 150;
+              if (ly < 0) ly = event.clientY - box.top + 14;
+              tip.style.left = lx + 'px'; tip.style.top = ly + 'px';
+            })
+            .on('mouseleave', function() { tip.style.display = 'none'; });
+          svg.append('path').datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+            .attr('d', path).attr('fill', 'none').attr('stroke', '#ffffff').attr('stroke-width', 0.5);
+        });
+    })();
   </script>
 </body>
 </html>

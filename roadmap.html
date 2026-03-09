@@ -13,8 +13,18 @@
       justify-content: space-between;
       align-items: stretch;
       gap: 1rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
+      position: sticky;
+      top: 70px;
+      z-index: 50;
+      background: var(--white);
+      padding: 1rem 0;
+      margin-left: -2rem;
+      margin-right: -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     
     .phase-nav {
@@ -91,6 +101,36 @@
     .phase-3-nav .phase-num { background: #2a5070; }
     .phase-4-nav .phase-num { background: #3a6084; }
     
+    /* Bottom phase navigation */
+    .phase-bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+    .phase-bottom-nav .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--white);
+      border: 2px solid var(--primary-blue);
+      border-radius: 8px;
+      color: var(--primary-blue);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .phase-bottom-nav .nav-btn:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+    .phase-bottom-nav .nav-btn.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
     /* Connector line between phases */
     .phase-nav:not(:last-child)::after {
       content: '';
@@ -389,6 +429,10 @@
               </div>
             </div>
           </div>
+          <div class="phase-bottom-nav">
+            <span class="nav-btn disabled">← Previous Phase</span>
+            <span class="nav-btn" onclick="goToPhase(1)">Next: Website Rebuild →</span>
+          </div>
               </div>
             </div>
 
@@ -450,6 +494,10 @@
                 <span class="badge badge-success">Conversion Lift</span>
               </div>
             </div>
+          </div>
+          <div class="phase-bottom-nav">
+            <span class="nav-btn" onclick="goToPhase(0)">← Phase 1: Stop the Bleeding</span>
+            <span class="nav-btn" onclick="goToPhase(2)">Next: Growth Channels →</span>
           </div>
               </div>
             </div>
@@ -525,6 +573,10 @@
               </div>
             </div>
           </div>
+          <div class="phase-bottom-nav">
+            <span class="nav-btn" onclick="goToPhase(1)">← Phase 2: Website Rebuild</span>
+            <span class="nav-btn" onclick="goToPhase(3)">Next: Scale & Optimize →</span>
+          </div>
               </div>
             </div>
 
@@ -572,6 +624,10 @@
                 <span class="badge badge-success">Revenue Diversification</span>
               </div>
             </div>
+          </div>
+          <div class="phase-bottom-nav">
+            <span class="nav-btn" onclick="goToPhase(2)">← Phase 3: Growth Channels</span>
+            <span class="nav-btn disabled">Final Phase</span>
           </div>
               </div>
             </div>
@@ -821,6 +877,9 @@
         prevBtn.disabled = currentSlide === 0;
         nextBtn.disabled = currentSlide === totalSlides - 1;
       }
+      
+      // Expose goToPhase globally for bottom nav buttons
+      window.goToPhase = goToSlide;
       
       // Click handlers for phase nav
       navItems.forEach(nav => {
