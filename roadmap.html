@@ -148,14 +148,16 @@
       }
     }
     
-    /* Slider container - clip at section level */
+    /* Slider container - clip horizontally only to prevent slider overflow */
     .section.slider-section {
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: visible;
     }
     
     .slider-wrapper {
       position: relative;
       width: 100%;
+      padding-top: 1rem;
     }
     
     .slider-track {
